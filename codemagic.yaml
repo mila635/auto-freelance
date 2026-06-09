@@ -3,13 +3,11 @@ workflows:
     name: Android Build
     max_build_duration: 30
     environment:
-      vars:
-        PACKAGE_NAME: "com.autofreelance.app"
       java: 17
-      android_sdk: 34
     scripts:
+      - name: Grant execute permission
+        script: chmod +x gradlew
       - name: Build Android APK
-        script: |
-          ./gradlew assembleDebug --stacktrace
+        script: ./gradlew assembleDebug --stacktrace
     artifacts:
       - app/build/outputs/apk/debug/*.apk
